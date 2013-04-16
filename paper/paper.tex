@@ -1,0 +1,70 @@
+\documentclass[10pt,peerreviewca]{IEEEtran}
+
+
+\usepackage[pdftex]{graphicx}
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{url}
+
+\hyphenation{}
+
+\begin{document}
+
+\title{On Unstructured Distributed Search over BitTorrent}
+
+\author{\IEEEauthorblockN{William Mayor}
+\IEEEauthorblockA{University College London\\
+Gower Street, London, UK\\
+Email: w.mayor@ucl.ac.uk}
+\and
+\IEEEauthorblockN{Ingemar Cox}
+\IEEEauthorblockA{University College London\\
+Gower Street, London, UK\\
+Email: i.cox@ucl.ac.uk}}
+
+\maketitle
+
+\begin{abstract}
+    
+    \input{00-Abstract.tex}
+
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction and Motivation}\label{sec:introduction}
+
+    \input{01-Introduction.tex}
+
+\section{Background and Related Work}\label{sec:background}
+
+    \input{02-Background.tex}
+
+\section{The Measurement Study}\label{sec:measurement}
+
+    \input{03-Measurement.tex}
+
+\section{The PAC BitTorrent Extension}\label{sec:extension}
+
+    \input{04-Extension.tex}
+
+\section{The Overheads}\label{sec:overheads}
+
+    \input{05-Overheads.tex}
+
+\section{The Simulations}\label{sec:simulations}
+
+    \input{06-Simulations.tex}
+
+\section{Conclusions and Future Work}\label{sec:conclusions}
+
+    \input{07-Conclusions.tex}
+
+\section*{Acknowledgments}
+
+    Grant no: EP/G037264/1 as part of UCL's Security Science Doctoral Training Centre.
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,library}
+
+\end{document}

@@ -1,0 +1,52 @@
+Tracker bttrack9youcom has 50552 torrents
+    First scrape Fri Jun 08 18:59:28 BST 2012
+     Last scrape Sun Jun 17 23:17:36 BST 2012
+    That's 10 scrapes over 9 days
+Tracker exodusdesynccom6969 has 102493 torrents
+    First scrape Tue May 01 19:54:56 BST 2012
+     Last scrape Wed Jun 13 08:13:04 BST 2012
+    That's 5 scrapes over 42 days
+Tracker xxxtrackercom2710 has 61693 torrents
+    First scrape Tue Jun 12 01:10:40 BST 2012
+     Last scrape Tue Jun 19 11:18:40 BST 2012
+    That's 4 scrapes over 7 days
+Tracker h33tcom3310 has 899098 torrents
+    First scrape Tue Jun 26 21:24:32 BST 2012
+     Last scrape Mon Jul 02 23:30:24 BST 2012
+    That's 7 scrapes over 6 days
+Tracker btrghostnet has 126656 torrents
+    First scrape Fri Jun 08 17:57:36 BST 2012
+     Last scrape Wed Jun 13 09:12:48 BST 2012
+    That's 3 scrapes over 4 days
+Tracker 611541162058000 has 33365 torrents
+    First scrape Mon Jun 11 20:14:08 BST 2012
+     Last scrape Thu Jun 14 07:11:12 BST 2012
+    That's 2 scrapes over 2 days
+Tracker fr33domh33tcom3310 has 983746 torrents
+    First scrape Tue May 01 19:54:56 BST 2012
+     Last scrape Sun Jun 24 17:25:36 BST 2012
+    That's 11 scrapes over 53 days
+Tracker opensharingorg2710 has 341811 torrents
+    First scrape Fri Jun 15 16:49:20 BST 2012
+     Last scrape Tue Jul 03 13:01:04 BST 2012
+    That's 45 scrapes over 17 days
+Tracker bttrack9youcom8080 has 39753 torrents
+    First scrape Mon Jun 11 23:11:12 BST 2012
+     Last scrape Thu Jun 14 08:17:20 BST 2012
+    That's 4 scrapes over 2 days
+Tracker trackertorrentbayto6969 has 13088 torrents
+    First scrape Wed Jun 13 22:11:28 BST 2012
+     Last scrape Wed Jun 13 22:11:28 BST 2012
+    That's 1 scrapes over 0 days
+Tracker bigtorrentorg2710 has 218390 torrents
+    First scrape Fri Jun 08 17:55:28 BST 2012
+     Last scrape Tue Jul 03 02:27:28 BST 2012
+    That's 17 scrapes over 24 days
+Tracker coppersurfertk6969 has 234714 torrents
+    First scrape Fri Jun 08 17:55:28 BST 2012
+     Last scrape Tue Jul 03 11:50:40 BST 2012
+    That's 433 scrapes over 24 days
+Tracker tvtrackerprqto80 has 36931 torrents
+    First scrape Tue May 01 20:01:20 BST 2012
+     Last scrape Tue May 01 20:01:20 BST 2012
+    That's 1 scrapes over 0 days
