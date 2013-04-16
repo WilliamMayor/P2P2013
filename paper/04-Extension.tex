@@ -8,29 +8,32 @@ In Section~\ref{sec:extension:indexing} we first introduce the modification to t
 
 \subsection{Model}\label{sec:extension:model}
 
-    When querying a fixed number of random nodes, $z$, the probability of a successful query is now determined by (i) the number of nodes participating in the torrent, and (ii) the number of nodes indexing the torrent's tracking data, $r_i$. Given our proposed modification to the BitTorrent protocol, the more queries the network receives for a torrent, the more that torrent's tracking data is replicated, and the easier it becomes to find. At any point in time, $t$, the number of nodes indexing a torrent, $r(t)$, depends on (i) the total number of requests made for the torrent at $t$, and (ii) the number of nodes left in the network that were already indexing the torrent. In \cite{Crosby2007} the authors observe that in 95\% of the queries they made of the BitTorrent DHT, 20\% of the contacted nodes were not available. We therefore assume that of the $r(t-1)$ nodes indexing the torrent at time $t-1$, $0.8r(t-1)$ are available at time $t$. In \cite{Guo2007} the authors create a fluid model of BitTorrent networks, using that the node arrival rate at a torrent follows an exponentially decreasing rule with time: $\lambda_0e^{-\frac{t}{\tau}}$. Here, $\lambda_0$ indicates the arrival rate at $t=0$ and $\tau$ gives the attenuation parameter of the distribution. We can use this model to calculate how many nodes first index the torrent at each point in time. For each search made for the torrent a number of requests will be made, the total number of requests required depends on the existing replication. We use the expected value of a geometric distribution to model this: $zP(d_i)^{-1}$. Some of the nodes contacted will be indexing the torrent already, contacting these nodes does not increase the replication of the tracking data but does signify a successful query. We use the expected value of a hyper-geometric distribution to model the proportion of contacted nodes that did not index the torrent already: $(1-r(t-1)n^{-1})$. Eqn~\ref{eq:replication} combines the above to give a recursive definition of the number of nodes that are indexing a torrent at time $t$.
+    When querying a fixed number of random nodes, $z$, the probability of a successful query is now determined by (i) the number of nodes participating in the torrent, and (ii) the number of nodes indexing the torrent's tracking data, $r_i$. Given our proposed modification to the BitTorrent protocol, the more queries the network receives for a torrent, the more that torrent's tracking data is replicated, and the easier it becomes to find. At any point in time the number of nodes indexing a torrent, $r(t)$, additionally depends on: the number, $u$, of requests made for the torrent, and the proportion, $c$, of nodes that have left the network. The change in replication over time can be expressed as:
 
     \begin{equation}
-        r(t) = \lambda_0e^{-\frac{t}{\tau}}(1 + z(1-r(t-1)n^{-1})P(d_i)^{-1})+0.8r(t-1)
-        \label{eq:replication}
+        {dr(t) \over dt} = u(1+z(1-{r(t) \over n}))-cr(t)
+        \label{eq:drdt}
     \end{equation}
 
-    The recursive definition of $r(t)$ requires that a base value be set for $r(1)$. Conceptually, $r(1)$ is the number of nodes indexing the torrent when the torrent is brand new, i.e. before any searches have been made for it. The value for $r(1)$ can be controlled by the single authoring node by the use of dummy queries. Each query publicises the new torrent and can be used to bootstrap tracking data around the network.
+    Here, $(1-{r(t) \over n})$ gives the proportion of the $z$ nodes that were not already indexing the torrent. We can solve this ODE to give us an equation for the replication as a function of time:
+
+    \begin{equation}
+        r(t) = ke^{-t(c+{uz \over n})}+{un(1+z) \over uz+cn}
+        \label{eq:rt}
+    \end{equation}    
+
+    The constant, $k$, is given by the initial condition, $r(0)$. Conceptually, this value is the number of nodes that index the torrent before any queries have been made for it. $r(0)$ can be decided by the torrent's authoring node and represents a bootstrap value that enables early queries to be successful. For a fixed $z$ the value for $r(0)$ can be tuned to enable a desired probability of success using Eqn~\ref{eq:prob_find_non_uniform_distribution}. The authoring node simply makes dummy requests to $r(0)$ nodes in order to push tracking data into the network.
+
+    NOTES.
+
+    \begin{enumerate}
+        \item With this constant $u$ and $c$ the replication exponentially tends towards ${un(1+z) \over uz+cn}$
+        \item I have removed the assumption that nodes continue to query until they are successful. This makes the equations simpler. It removes the safety of knowing that a query definitely increases the replication because it is very possible that a single query is not successful and therefore those requests have not increased tracking data, merely lots of red herrings.
+        \item We can add this assumption back in by: increasing the query rate according to the probability of success at $t$, or fixing $P(d)$. I'm more inclined towards the former. EIther might make the ODE equation too hard to solve again.
+        \item Replication increases to the limit if $r(0) < {un(1+z) \over uz+cn}$ and decreases if $r(0) > {un(1+z) \over uz+cn}$
+    \end{enumerate}
 
 \subsection{Discussion}\label{sec:extension:discussion}
 
-    The probability of a successful query is controlled by $z$ and $r(t)$. When a node wishes to query for a torrent's tracking data they must issues $z$ requests. If the replication of the tracking data were known then $z$ could be selected to provide a desired probability of success. Unfortunately, the only point in time when the replication is known is at $t=1$, when the author is bootstrapping the tracking data. At this early stage the author can pick a replication that provides a desired probability of success for a desired $z$. After this time, the replication will depend on the number of searches made for the torrent and the speed at which nodes leave the network. Figure~\ref{fig:required_z} shows our model's prediction of the value for $z$ required to provide a desired probability of successful query at a given point in time. Here we have assumed a torrent that has a peer arrival distribution of $50e^{\frac{-t}{50}}$. The replication at $t=1$ has been set at a value that requires $z=100$ in order to provide the desired probability of successful query. Over time the required $z$ value increases as the replication of tracking data falls. Figure~\ref{fig:replication} shows the decrease in replication over time. Nodes search for the torrent at an exponentially decreasing rate, early in the torrent's lifetime the replication is high because many nodes are making requests for that torrent. Later in the torrent's lifetime, far fewer searches are being performed for the torrent and so the replication decreases with the network churn. Consequently, $z$ has to increase to maintain the probability of success. For this torrent, the average search requires $z=143$, $z=270$, $z=340$, and $z=396$ for probability of success $P(d_i)=0.5$, $P(d_i)=0.8$, $P(d_i)=0.9$, and $P(d_i)=0.95$ respectively.
+    We saw in Section~\ref{sec:} that because of the distribution of torrents over nodes, PAC search would only be successful for X\% of the queries made. Our BitTorrent extension replicates torrent tracking data in order to improve PAC search performance. In order to analyse the performance gain consider a BitTorrent network in a steady state. Where the number of queries for any torrent is constant over time and the proportion of nodes that leave the network (the churn) is such that total network size remains constant also. We assume that the popularity distribution measured in Section~\ref{sec:measurement} is proportional to the distribution of queries made for the torrent (a reasonable assumption in this steady state). The performance of PAC search over time is then dependent on the behaviour of the replication of the tracking data for the torrent searched for. If the replication increases over time then the torrent will always be discoverable and a worst-case can be guaranteed. If the replication is decreasing over time then eventually the torrent will become undiscoverable. From Eqns~\ref{eq:drdt,eq:rt} we know that...
 
-    \begin{figure}[t]
-        \centering
-        \includegraphics[width=0.5\textwidth]{Images/RequiredZ.eps}
-        \caption{The number of nodes to query, $z$, over time, $t$, required to achieve a given probability of successful query}
-        \label{fig:required_z}
-    \end{figure}
-
-    \begin{figure}[t]
-        \centering
-        \includegraphics[width=0.5\textwidth]{Images/Replication.eps}
-        \caption{The number of nodes that are indexing a torrent, $r(t)$, over time, $t$.}
-        \label{fig:replication}
-    \end{figure}
