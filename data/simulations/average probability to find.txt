@@ -1,0 +1,144 @@
+constant-large-churn/z1000r5000
+    Average probability to find: 1.00000
+constant-large-churn/z100r1000
+    Average probability to find: 0.87872
+constant-large-churn/z500r1000
+    Average probability to find: 1.00000
+constant-large-churn/z500r5000
+    Average probability to find: 1.00000
+constant-large-static/z1000r5000
+    Average probability to find: 1.00000
+constant-large-static/z100r1000
+    Average probability to find: 0.93327
+constant-large-static/z500r1000
+    Average probability to find: 1.00000
+constant-large-static/z500r5000
+    Average probability to find: 1.00000
+constant-med-churn/z1000r5000
+    Average probability to find: 1.00000
+constant-med-churn/z100r1000
+    Average probability to find: 0.39313
+constant-med-churn/z500r1000
+    Average probability to find: 0.98974
+constant-med-churn/z500r5000
+    Average probability to find: 0.98939
+constant-med-static/z1000r5000
+    Average probability to find: 1.00000
+constant-med-static/z100r1000
+    Average probability to find: 0.48837
+constant-med-static/z500r1000
+    Average probability to find: 0.99637
+constant-med-static/z500r5000
+    Average probability to find: 0.99624
+constant-small-churn/z1000r5000
+    Average probability to find: 0.87843
+constant-small-churn/z100r1000
+    Average probability to find: 0.14376
+constant-small-churn/z500r1000
+    Average probability to find: 0.58279
+constant-small-churn/z500r5000
+    Average probability to find: 0.57464
+constant-small-static/z1000r5000
+    Average probability to find: 0.94394
+constant-small-static/z100r1000
+    Average probability to find: 0.19813
+constant-small-static/z500r1000
+    Average probability to find: 0.71813
+constant-small-static/z500r5000
+    Average probability to find: 0.69591
+exp-large/z1000r5000
+    Average probability to find: 0.99994
+exp-large/z100r1000
+    Average probability to find: 0.99055
+exp-large/z500r1000
+    Average probability to find: 0.99950
+exp-large/z500r5000
+    Average probability to find: 0.99888
+exp-large-flash/z1000r5000
+    Average probability to find: 0.99844
+exp-large-flash/z100r1000
+    Average probability to find: 0.97785
+exp-large-flash/z500r1000
+    Average probability to find: 0.99718
+exp-large-flash/z500r5000
+    Average probability to find: 0.99667
+exp-large-long/z1000r5000
+    Average probability to find: 1.00000
+exp-large-long/z100r1000
+    Average probability to find: 0.99510
+exp-large-long/z500r1000
+    Average probability to find: 1.00000
+exp-large-long/z500r5000
+    Average probability to find: 1.00000
+exp-med/z1000r5000
+    Average probability to find: 0.99954
+exp-med/z100r1000
+    Average probability to find: 0.97254
+exp-med/z500r1000
+    Average probability to find: 0.99794
+exp-med/z500r5000
+    Average probability to find: 0.99761
+exp-med-flash/z1000r5000
+    Average probability to find: 0.99689
+exp-med-flash/z100r1000
+    Average probability to find: 0.95049
+exp-med-flash/z500r1000
+    Average probability to find: 0.99357
+exp-med-flash/z500r5000
+    Average probability to find: 0.99391
+exp-med-long/z1000r5000
+    Average probability to find: 1.00000
+exp-med-long/z100r1000
+    Average probability to find: 0.97914
+exp-med-long/z500r1000
+    Average probability to find: 1.00000
+exp-med-long/z500r5000
+    Average probability to find: 1.00000
+exp-small/z1000r5000
+    Average probability to find: 0.99687
+exp-small/z100r1000
+    Average probability to find: 0.78611
+exp-small/z500r1000
+    Average probability to find: 0.98527
+exp-small/z500r5000
+    Average probability to find: 0.98413
+exp-small-flash/z1000r5000
+    Average probability to find: 0.98386
+exp-small-flash/z100r1000
+    Average probability to find: 0.73087
+exp-small-flash/z500r1000
+    Average probability to find: 0.96871
+exp-small-flash/z500r5000
+    Average probability to find: 0.97679
+exp-small-long/z1000r5000
+    Average probability to find: 1.00000
+exp-small-long/z100r1000
+    Average probability to find: 0.78811
+exp-small-long/z500r1000
+    Average probability to find: 0.99949
+exp-small-long/z500r5000
+    Average probability to find: 0.99924
+exp-xsmall/z1000r5000
+    Average probability to find: 0.93182
+exp-xsmall/z100r1000
+    Average probability to find: 0.25681
+exp-xsmall/z500r1000
+    Average probability to find: 0.78228
+exp-xsmall/z500r5000
+    Average probability to find: 0.77903
+exp-xsmall-flash/z1000r5000
+    Average probability to find: 0.88468
+exp-xsmall-flash/z100r1000
+    Average probability to find: 0.27179
+exp-xsmall-flash/z500r1000
+    Average probability to find: 0.79598
+exp-xsmall-flash/z500r5000
+    Average probability to find: 0.77090
+exp-xsmall-long/z1000r5000
+    Average probability to find: 0.99531
+exp-xsmall-long/z100r1000
+    Average probability to find: 0.33088
+exp-xsmall-long/z500r1000
+    Average probability to find: 0.92294
+exp-xsmall-long/z500r5000
+    Average probability to find: 0.90722
