@@ -1,4 +1,5 @@
 clear all;
+addpath('..');
 constants;
 
 disp('Reach 80% when x is:');
