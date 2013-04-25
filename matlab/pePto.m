@@ -7,6 +7,7 @@ sorted = sorted(end:-1:1,:);
 
 a = 1+size(sorted,1)/sum(log(sorted(:,2)));
 model=@(x) (a-1)*x.^(-a);
+ccd = @(x) x.^(-a+1);
 
 
 peers = sorted(:,1)';

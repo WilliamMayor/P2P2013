@@ -1,6 +1,8 @@
 clear all;
 pePto;
 
+v = 6395604;
+
 p=0.9;
 r=5000;
 n=5000000;
@@ -26,9 +28,4 @@ while (temp_p < p);
     temp_p = 1-(1-r_t1/n)^z;
 end
 
-
-fprintf('Torrents satisfied: %d%%\n', round(100*ccd(u)/ccd(1)));
-
-index = find(sorted(:,1)==u,1);
-percent = (sorted(index:end,1)'*sorted(index:end,2))/(sorted(:,1)'*sorted(:,2));
-fprintf('Pairings satisfied: %d%%\n', round(100*percent));
+fprintf('Queries satisfied: %d (%d%%)\n',round(v*ccd(u)),round(100*ccd(u)));

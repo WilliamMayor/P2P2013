@@ -4,43 +4,104 @@
 
 \begin{document}
 
-\section{Solve the ODE}
+\section{Replication Equation}
 
-\begin{align}
-    {dr \over dt} &= u(1+z(1-{r(t) \over n}))-cr(t) \\
-                  &= u(1+z)-r(t)(c+{uz \over n})
-\end{align}
+    \subsection{Solve the ODE}
 
-This is a linear ordinary differential equation and we know that $r(t)$ differentiates roughly into itself. So let's try a solution of the form $ae^{bt}$.
+        \begin{align}
+            {dr \over dt} &= u(1+z(1-{r(t) \over n}))-cr(t) \\
+                          &= u(1+z)-r(t)(c+{uz \over n})
+        \end{align}
 
-\begin{align}
-             r(t) &= ae^{bt}+d \\
-    {dr \over dt} &= bae^{bt} \\
-                  &= b(r(t)-d) \\
-                  &= br(t)-bd \\
-       \implies b &= -(c+{uz \over n}) \\
-               bd &= -u(1+z) \\
-       \implies d &= {u(1+z) \over c+{uz \over n}} \\
-    \implies r(t) &= ae^{-t(c+{uz \over n})}+{un(1+z) \over cn+uz}
-\end{align}
+        This is a linear ordinary differential equation and we know that $r(t)$ differentiates roughly into itself. So let's try a solution of the form $ae^{bt}$.
 
-Initial conditions give us
+        \begin{align}
+                     r(t) &= ae^{bt}+d \\
+            {dr \over dt} &= bae^{bt} \\
+                          &= b(r(t)-d) \\
+                          &= br(t)-bd \\
+               \implies b &= -(c+{uz \over n}) \\
+                       bd &= -u(1+z) \\
+               \implies d &= {u(1+z) \over c+{uz \over n}} \\
+            \implies r(t) &= ae^{-t(c+{uz \over n})}+{un(1+z) \over cn+uz}
+        \end{align}
 
-\begin{align}
-             r(0) &= a+{un(1+z) \over cn+uz} \\
-                a &= r(0)-{un(1+z) \over cn+uz} \\
-    \implies r(t) &= (r(0)-{un(1+z) \over cn+uz})e^{-t(c+{uz \over n})}+{un(1+z) \over cn+uz}
-\end{align}
+        Initial conditions give us
 
-\section{Differentiate the Solution}
+        \begin{align}
+                     r(0) &= a+{un(1+z) \over cn+uz} \\
+                        a &= r(0)-{un(1+z) \over cn+uz} \\
+            \implies r(t) &= (r(0)-{un(1+z) \over cn+uz})e^{-t(c+{uz \over n})}+{un(1+z) \over cn+uz}
+        \end{align}
 
-Just in case.
+    \subsection{Differentiate the Solution}
 
-\begin{align}
-             r(t) &= (r(0)-{un(1+z) \over cn+uz})e^{-t(c+{uz \over n})}+{un(1+z) \over cn+uz} \\
-    {dr \over dt} &= -(c+{uz \over n})(r(0)-{un(1+z) \over cn+uz})e^{-t(c+{uz \over n})} \\
-                  &= -(c+{uz \over n})(r(t)-{un(1+z) \over cn+uz}) \\
-                  &= u(1+z)-r(t)(c+{uz \over n})
-\end{align}
+        Just in case.
+
+        \begin{align}
+                     r(t) &= (r(0)-{un(1+z) \over cn+uz})e^{-t(c+{uz \over n})}+{un(1+z) \over cn+uz} \\
+            {dr \over dt} &= -(c+{uz \over n})(r(0)-{un(1+z) \over cn+uz})e^{-t(c+{uz \over n})} \\
+                          &= -(c+{uz \over n})(r(t)-{un(1+z) \over cn+uz}) \\
+                          &= u(1+z)-r(t)(c+{uz \over n})
+        \end{align}
+
+\section{Popularity and Query Distributions}
+
+    \subsection{Start from Popularity Distribution}
+
+        We have a torrent popularity distribution, $P(T)$, tells us the probability that a torrent is owned by a given number of nodes:
+
+        \begin{equation}
+            P(T=t) = (a-1)t^{-a}, a=1.63
+        \end{equation}
+
+        The CCD of this distribution will tell us the probability that a torrent is owned by $x$ or more nodes:
+
+        \begin{equation}
+            CCD(T=t) = t^{1-a}
+        \end{equation}
+
+        Leaving the model and using the emprical data we can say how many node-torrent pairings we observed where the torrents were owned by $x$ or more nodes:
+
+        \begin{verbatim}
+            nodes = [1 2 3 ... 34391]
+            frequency = [397121 202599 107501 ... 1]
+            i = <index of x in nodes, i.e. nodes[i] = x>
+            total = nodes*frequency'
+            satisfiable = nodes[x:end]*frequency[x:end]'
+            percent = satisfiable / total
+        \end{verbatim}
+
+        To do the same calculation for the model we need solve:
+
+        \begin{equation}
+            \int_x^{\inf} (a-1)t^{-a}*\textrm{total}*tdt = \textrm{total}*(a-1)\int_x^{\inf} t^{1-a}dt
+        \end{equation}
+
+        I'm pretty certain this is just $\inf$ for $a<2$.
+
+        In order to determine what proportion of the queries per hour would be satisfiable we need to know how they're distributed over the torrents. If we assume that query distribution matches torrent distribution then we have $P(Q=q)=(a-1)q^{-a}$, the probability that a torrent has $q$ queries performed for it. If we knew the number of torrents that existed per hour, we could use $P(Q=q)*\sum(\textrm{torrents})$ to give us the number of torrents that have $q$ queries. Multiply by $q$ to get the total number of queries performed at this rate. We can similarly use the CCD(Q=q) to know how many torrents or queries were performed at a rate of $q$ or more per hour.
+
+        We know how many queries there are per hour (6,395,604), so we know that:
+
+        \begin{equation}
+            \int_1^{\inf} (a-1)q^{-a}*\sum(\textrm{torrents})*q dq = 6395604
+        \end{equation}
+
+        Unfortunately this means the number of torrents has to be infinitely close to 0 in order to balance the infinite integral.
+
+        This is as close as I can get to working out a query success per hour figure.
+
+    \subsection{Start from Query Distribution}
+
+        Let's assume that the query distribution over torrents follows a power law: $P(S=s)=(b-1)s^{-b}$, the probability that a query is part of a group of $s$ queries for a torrent. e.g. pick a query at random, what's the probability that it is one of $s$ queries for a torrent. We can work out the $CCD(S=s)$ as before, and, if we multiply up by the total number of queries per hour we can calculate the number of queries per hour that constitute query rates for torrents of $s$ per hour or higher:
+
+        \begin{equation}
+            6395604*s^{1-b}
+        \end{equation}
+
+        But what's $b$? We don't have empirical data to fit to. Instead, we assume that the probability that a query is part of a query rate, $s$, is the same as the probability that a torrent is owned by $s$ nodes, i.e. $a=b$. What can we use this for? We can work out the proportion of queries that we can satisfy, but it's the same as the number of torrents that we can discover because we're using the same exponent and the scale doesn't matter.
+
+        If we change the total query volume per hour but keep the number of torrents and the number of nodes the same then the query rate to torrents must increase. If this happens the query distribution is no longer following the popularity distribution, and so $a!=b$. When we change the total query volume we are implicitly increasing the number of torrents (and so nodes must be joining more torrents than they were).
 
 \end{document}
